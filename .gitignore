@@ -1,0 +1,8 @@
+*.pyc
+__pycache__/
+*.swp
+.env
+.env.*
+/tmp/
+spark-warehouse/
+.pytest_cache/
