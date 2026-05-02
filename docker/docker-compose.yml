@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # Message Broker & Streaming Substrate
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     container_name: clickstream-kafka
@@ -25,6 +24,94 @@ services:
       CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
     healthcheck:
       test: ["CMD-SHELL", "kafka-topics.sh --bootstrap-server localhost:9092 --list"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.5.0
+    container_name: clickstream-schema-registry
+    depends_on:
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka:29092'
+      SCHEMA_REGISTRY_LISTENERS: 'http://0.0.0.0:8081'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/subjects"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  cassandra:
+    image: cassandra:4.1
+    container_name: clickstream-cassandra
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./cassandra-init:/docker-entrypoint-initdb.d
+    environment:
+      CASSANDRA_CLUSTER_NAME: ClickstreamCluster
+      CASSANDRA_NUM_TOKENS: 256
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -e 'DESC KEYSPACES'"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: clickstream-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  spark-master:
+    image: bitnami/spark:3.5.0
+    container_name: clickstream-spark-master
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+
+  spark-worker:
+    image: bitnami/spark:3.5.0
+    container_name: clickstream-spark-worker
+    depends_on:
+      - spark-master
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2g
+    ports:
+      - "8081:8081"
+
+  minio:
+    image: minio/minio:RELEASE.2023-10-25T06-33-25Z
+    container_name: clickstream-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
       interval: 10s
       timeout: 5s
       retries: 5
