@@ -1,0 +1,6 @@
+groups:
+  - name: clickstream-alerts
+    rules:
+      - alert: HighConsumerLag
+        expr: kafka_consumergroup_lag > 100000
+        for: 2m
