@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "name": "PurchaseEvent",
+  "namespace": "com.ecommerce.analytics",
+  "fields": [
+    {"name": "event_id", "type": "string"},
+    {"name": "user_id", "type": "string"},
+    {"name": "session_id", "type": "string"},
+    {"name": "event_type", "type": "string"},
+    {"name": "client_timestamp", "type": "long"},
+    {"name": "server_timestamp", "type": "long"},
+    {"name": "ip_address", "type": "string"},
+    {"name": "user_agent", "type": "string"},
+    {"name": "page_url", "type": ["null", "string"], "default": null},
+    {"name": "payload", "type": {"type": "map", "values": "string"}, "default": {}}
+  ]
+}
