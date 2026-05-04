@@ -8,3 +8,5 @@ def register(subject, schema_dict):
 import json
 if __name__ == '__main__':
     print('Schema Auto-registration execution script starting...')
+    # Adding subjects
+    # clickstream.raw-value
