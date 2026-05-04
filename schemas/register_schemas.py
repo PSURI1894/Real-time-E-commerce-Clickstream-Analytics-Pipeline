@@ -6,3 +6,5 @@ def register(subject, schema_dict):
     resp = requests.post(f'{REGISTRY_URL}/subjects/{subject}/versions', headers=headers, json=payload)
     return resp.json()
 import json
+if __name__ == '__main__':
+    print('Schema Auto-registration execution script starting...')
