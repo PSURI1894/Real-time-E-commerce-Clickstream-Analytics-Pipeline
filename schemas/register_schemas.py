@@ -10,3 +10,5 @@ if __name__ == '__main__':
     print('Schema Auto-registration execution script starting...')
     # Adding subjects
     # clickstream.raw-value
+
+# Registered
