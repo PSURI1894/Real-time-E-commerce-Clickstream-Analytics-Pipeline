@@ -56,3 +56,5 @@ class ClickstreamProducer:
     def flush(self):
         if self._ready:
             self.producer.flush()
+
+# Kafka logs configurations
