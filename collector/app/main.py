@@ -49,3 +49,5 @@ async def collect_event(event: EventPayload):
 @app.get("/health")
 def health_check():
     return {"status": "healthy", "kafka_connected": producer.is_ready()}
+
+# Event Collector endpoints final configurations
