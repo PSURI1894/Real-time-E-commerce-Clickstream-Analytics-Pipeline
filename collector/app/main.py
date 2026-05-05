@@ -51,3 +51,5 @@ def health_check():
     return {"status": "healthy", "kafka_connected": producer.is_ready()}
 
 # Event Collector endpoints final configurations
+
+# Metrics endpoints configured
