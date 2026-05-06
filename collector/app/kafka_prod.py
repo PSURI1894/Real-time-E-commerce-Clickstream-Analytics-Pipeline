@@ -62,3 +62,5 @@ class ClickstreamProducer:
 # Performance tuned
 
 # Compression snappy
+
+# Idempotency turned on
