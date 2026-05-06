@@ -72,3 +72,5 @@ class ClickstreamProducer:
 # Buffer configs
 
 # Thread safety logs
+
+# Optimizations check
