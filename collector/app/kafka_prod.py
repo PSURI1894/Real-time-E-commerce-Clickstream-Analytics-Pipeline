@@ -60,3 +60,5 @@ class ClickstreamProducer:
 # Kafka logs configurations
 
 # Performance tuned
+
+# Compression snappy
