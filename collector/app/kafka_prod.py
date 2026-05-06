@@ -66,3 +66,5 @@ class ClickstreamProducer:
 # Idempotency turned on
 
 # Acks all
+
+# Client timeouts
