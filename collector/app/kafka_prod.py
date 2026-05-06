@@ -58,3 +58,19 @@ class ClickstreamProducer:
             self.producer.flush()
 
 # Kafka logs configurations
+
+# Performance tuned
+
+# Compression snappy
+
+# Idempotency turned on
+
+# Acks all
+
+# Client timeouts
+
+# Buffer configs
+
+# Thread safety logs
+
+# Optimizations check
