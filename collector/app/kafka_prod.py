@@ -64,3 +64,5 @@ class ClickstreamProducer:
 # Compression snappy
 
 # Idempotency turned on
+
+# Acks all
