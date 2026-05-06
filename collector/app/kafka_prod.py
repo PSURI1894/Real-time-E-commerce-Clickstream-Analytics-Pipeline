@@ -58,3 +58,5 @@ class ClickstreamProducer:
             self.producer.flush()
 
 # Kafka logs configurations
+
+# Performance tuned
