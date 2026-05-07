@@ -102,3 +102,5 @@ if __name__ == "__main__":
 # Search patterns inclusion
 
 # Add to cart actions
+
+# Purchase transactions
