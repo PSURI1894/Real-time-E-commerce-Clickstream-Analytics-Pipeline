@@ -106,3 +106,5 @@ if __name__ == "__main__":
 # Purchase transactions
 
 # Network disconnect patterns
+
+# Bot activity rates
