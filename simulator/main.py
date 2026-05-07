@@ -110,3 +110,5 @@ if __name__ == "__main__":
 # Bot activity rates
 
 # Argument configs
+
+# Headers bugfix
