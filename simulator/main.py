@@ -100,3 +100,5 @@ if __name__ == "__main__":
 # Multi-threaded shopper paths
 
 # Search patterns inclusion
+
+# Add to cart actions
