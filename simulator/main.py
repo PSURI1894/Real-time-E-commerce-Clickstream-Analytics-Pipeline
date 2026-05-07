@@ -108,3 +108,5 @@ if __name__ == "__main__":
 # Network disconnect patterns
 
 # Bot activity rates
+
+# Argument configs
