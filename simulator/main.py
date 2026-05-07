@@ -96,3 +96,5 @@ if __name__ == "__main__":
     while True:
         run_simulation(random.randint(2, 5))
         time.sleep(2)
+
+# Multi-threaded shopper paths
