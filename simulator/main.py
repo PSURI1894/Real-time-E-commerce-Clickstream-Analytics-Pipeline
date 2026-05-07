@@ -98,3 +98,5 @@ if __name__ == "__main__":
         time.sleep(2)
 
 # Multi-threaded shopper paths
+
+# Search patterns inclusion
