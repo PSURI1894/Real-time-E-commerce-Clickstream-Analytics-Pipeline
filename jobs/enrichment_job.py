@@ -84,3 +84,5 @@ if __name__ == "__main__":
     main()
 
 # Kafka source mapping
+
+# Deserialization schemas
