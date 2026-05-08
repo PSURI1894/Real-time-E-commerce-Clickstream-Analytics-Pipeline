@@ -116,3 +116,5 @@ if __name__ == "__main__":
 # User-agent bugfix
 
 # Timestamps sync bugfix
+
+# Click loops bugfix
