@@ -120,3 +120,5 @@ if __name__ == "__main__":
 # Click loops bugfix
 
 # Session IDs collision bugfix
+
+# Empty payload checks
