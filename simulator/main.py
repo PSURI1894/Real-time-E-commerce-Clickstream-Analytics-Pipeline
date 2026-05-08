@@ -110,3 +110,17 @@ if __name__ == "__main__":
 # Bot activity rates
 
 # Argument configs
+
+# Headers bugfix
+
+# User-agent bugfix
+
+# Timestamps sync bugfix
+
+# Click loops bugfix
+
+# Session IDs collision bugfix
+
+# Empty payload checks
+
+# Simulator health audit completed
