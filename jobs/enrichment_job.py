@@ -90,3 +90,5 @@ if __name__ == "__main__":
 # Schema parsing
 
 # Filtering streams
+
+# Base enricher class
