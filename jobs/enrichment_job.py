@@ -94,3 +94,5 @@ if __name__ == "__main__":
 # Base enricher class
 
 # User-agent parse
+
+# Write back enriched
