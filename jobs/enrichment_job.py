@@ -98,3 +98,5 @@ if __name__ == "__main__":
 # Write back enriched
 
 # Checkpoint configuration
+
+# Spark context init
