@@ -96,3 +96,5 @@ if __name__ == "__main__":
 # User-agent parse
 
 # Write back enriched
+
+# Checkpoint configuration
