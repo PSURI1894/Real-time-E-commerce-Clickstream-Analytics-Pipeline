@@ -112,3 +112,5 @@ if __name__ == "__main__":
 # Testing subnet boundaries
 
 # Performance updates geoip
+
+# Validation checks metrics
