@@ -118,3 +118,5 @@ if __name__ == "__main__":
 # Bots filtering bugfix
 
 # Event frequency rules
+
+# Flag bots
