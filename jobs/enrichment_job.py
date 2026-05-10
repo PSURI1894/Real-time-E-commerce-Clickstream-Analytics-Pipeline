@@ -120,3 +120,5 @@ if __name__ == "__main__":
 # Event frequency rules
 
 # Flag bots
+
+# Filter aggregates bot
