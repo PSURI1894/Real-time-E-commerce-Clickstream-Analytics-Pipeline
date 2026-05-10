@@ -114,3 +114,5 @@ if __name__ == "__main__":
 # Performance updates geoip
 
 # Validation checks metrics
+
+# Bots filtering bugfix
