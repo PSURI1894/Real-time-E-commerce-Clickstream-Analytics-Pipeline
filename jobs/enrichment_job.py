@@ -116,3 +116,5 @@ if __name__ == "__main__":
 # Validation checks metrics
 
 # Bots filtering bugfix
+
+# Event frequency rules
