@@ -1,0 +1,1 @@
+-- Tables creation cql
