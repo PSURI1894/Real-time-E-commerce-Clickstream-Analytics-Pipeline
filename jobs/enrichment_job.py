@@ -114,3 +114,17 @@ if __name__ == "__main__":
 # Performance updates geoip
 
 # Validation checks metrics
+
+# Bots filtering bugfix
+
+# Event frequency rules
+
+# Flag bots
+
+# Filter aggregates bot
+
+# DLQ redirection bots
+
+# Test bot identification
+
+# Logs updates bot
