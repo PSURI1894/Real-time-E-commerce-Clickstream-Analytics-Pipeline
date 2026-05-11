@@ -4,3 +4,5 @@ class CassandraConnectionManager:
 # Clusters config
 
 # Cassandra write modes
+
+# Writing updates
