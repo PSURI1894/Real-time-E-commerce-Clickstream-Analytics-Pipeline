@@ -6,3 +6,5 @@ class CassandraConnectionManager:
 # Cassandra write modes
 
 # Writing updates
+
+# Automation initialization
