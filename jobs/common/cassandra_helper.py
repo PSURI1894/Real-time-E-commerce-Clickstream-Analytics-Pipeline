@@ -10,3 +10,5 @@ class CassandraConnectionManager:
 # Automation initialization
 
 # Diagnostics finished
+
+# Metrics collector integrations
