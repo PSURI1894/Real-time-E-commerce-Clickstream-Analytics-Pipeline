@@ -8,3 +8,5 @@ redis_db = redis.Redis(host='localhost', port=6379)
 # Pipeline client updates
 
 # User ttl settings
+
+# Stale sessions cleanups
