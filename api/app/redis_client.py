@@ -12,3 +12,5 @@ redis_db = redis.Redis(host='localhost', port=6379)
 # Stale sessions cleanups
 
 # Tests checks
+
+# Caching metrics logs
