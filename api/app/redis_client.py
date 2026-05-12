@@ -10,3 +10,5 @@ redis_db = redis.Redis(host='localhost', port=6379)
 # User ttl settings
 
 # Stale sessions cleanups
+
+# Tests checks
