@@ -6,3 +6,5 @@ redis_db = redis.Redis(host='localhost', port=6379)
 # Features lists schemas
 
 # Pipeline client updates
+
+# User ttl settings
