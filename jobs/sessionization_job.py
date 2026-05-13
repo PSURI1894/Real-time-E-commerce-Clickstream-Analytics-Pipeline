@@ -19,3 +19,5 @@
 # Redis write updates
 
 # RocksDB state stores
+
+# Changelog config
