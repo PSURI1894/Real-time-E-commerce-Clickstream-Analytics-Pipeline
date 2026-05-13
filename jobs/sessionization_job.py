@@ -11,3 +11,5 @@
 # Track pages lists
 
 # Purchase indicator flags
+
+# Session timeout config
