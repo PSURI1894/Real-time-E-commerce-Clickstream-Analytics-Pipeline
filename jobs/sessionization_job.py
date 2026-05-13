@@ -7,3 +7,5 @@
 # Update state mappings
 
 # Session aggregations rules
+
+# Track pages lists
