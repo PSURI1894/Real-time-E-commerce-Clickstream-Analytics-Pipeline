@@ -9,3 +9,5 @@
 # Session aggregations rules
 
 # Track pages lists
+
+# Purchase indicator flags
