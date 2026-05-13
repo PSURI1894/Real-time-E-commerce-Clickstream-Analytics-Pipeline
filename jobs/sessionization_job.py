@@ -5,3 +5,5 @@
 # mapGroupsWithState config
 
 # Update state mappings
+
+# Session aggregations rules
