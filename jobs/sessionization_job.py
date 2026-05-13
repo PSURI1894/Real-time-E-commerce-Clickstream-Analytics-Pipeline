@@ -3,3 +3,5 @@
 # Session state schemas
 
 # mapGroupsWithState config
+
+# Update state mappings
