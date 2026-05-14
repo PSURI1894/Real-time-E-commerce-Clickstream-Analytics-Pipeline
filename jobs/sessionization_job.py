@@ -33,3 +33,5 @@
 # Duplicate checkouts fix
 
 # Late warning logs
+
+# Compaction status verified
