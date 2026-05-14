@@ -21,3 +21,5 @@
 # RocksDB state stores
 
 # Changelog config
+
+# State memory audit completed
