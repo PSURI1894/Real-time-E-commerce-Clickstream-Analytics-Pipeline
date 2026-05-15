@@ -94,3 +94,5 @@ if __name__ == "__main__":
 # Checkpoint configuration aggregates
 
 # Spark dashboard integration
+
+# Aggregations validated
