@@ -86,3 +86,5 @@ if __name__ == "__main__":
 # Filter late items
 
 # Groupings options product
+
+# Aggregation mappings
