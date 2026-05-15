@@ -90,3 +90,5 @@ if __name__ == "__main__":
 # Aggregation mappings
 
 # Cassandra writes integration
+
+# Checkpoint configuration aggregates
