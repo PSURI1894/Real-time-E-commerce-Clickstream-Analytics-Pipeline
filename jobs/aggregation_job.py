@@ -88,3 +88,5 @@ if __name__ == "__main__":
 # Groupings options product
 
 # Aggregation mappings
+
+# Cassandra writes integration
