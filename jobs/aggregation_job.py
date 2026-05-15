@@ -92,3 +92,5 @@ if __name__ == "__main__":
 # Cassandra writes integration
 
 # Checkpoint configuration aggregates
+
+# Spark dashboard integration
