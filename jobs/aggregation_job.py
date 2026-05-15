@@ -78,3 +78,5 @@ if __name__ == "__main__":
     main()
 
 # Tumbling windows
+
+# Sliding window aggregates
