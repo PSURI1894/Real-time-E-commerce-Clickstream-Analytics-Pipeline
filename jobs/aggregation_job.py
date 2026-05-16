@@ -96,3 +96,17 @@ if __name__ == "__main__":
 # Spark dashboard integration
 
 # Aggregations validated
+
+# Lateness window expanded
+
+# DLQ routing late
+
+# Watermark validation cases
+
+# Verify late thresholds
+
+# Load test late items
+
+# Log watermarks progression
+
+# Reconciliation watermarks audit
