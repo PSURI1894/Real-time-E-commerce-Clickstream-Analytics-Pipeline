@@ -106,3 +106,5 @@ if __name__ == "__main__":
 # Verify late thresholds
 
 # Load test late items
+
+# Log watermarks progression
