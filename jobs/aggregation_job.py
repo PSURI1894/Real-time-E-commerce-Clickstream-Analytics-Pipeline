@@ -120,3 +120,5 @@ if __name__ == "__main__":
 # Broadcast optimization
 
 # GC parameters config
+
+# State compacting
