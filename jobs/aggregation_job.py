@@ -114,3 +114,5 @@ if __name__ == "__main__":
 # Salt calculations product
 
 # Write salted row
+
+# Shuffle partitions tune
