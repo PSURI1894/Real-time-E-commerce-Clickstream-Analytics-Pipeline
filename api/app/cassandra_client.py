@@ -5,3 +5,5 @@
 # Load test salted tables
 
 # SKU salt values verify
+
+# Cassandra queries hot partition updates completed
