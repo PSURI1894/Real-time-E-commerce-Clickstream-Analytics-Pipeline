@@ -1,1 +1,3 @@
 # Cassandra query engine client
+
+# Parallel fan-in salt query
