@@ -116,3 +116,5 @@ if __name__ == "__main__":
 # Write salted row
 
 # Shuffle partitions tune
+
+# Broadcast optimization
