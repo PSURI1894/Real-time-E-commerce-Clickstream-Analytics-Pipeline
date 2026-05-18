@@ -62,3 +62,5 @@ def health():
     return {"status": "healthy", "redis_connected": redis_ok}
 
 import time
+
+# API endpoint metrics
