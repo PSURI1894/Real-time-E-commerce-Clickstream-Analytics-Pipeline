@@ -114,3 +114,17 @@ if __name__ == "__main__":
 # Salt calculations product
 
 # Write salted row
+
+# Shuffle partitions tune
+
+# Broadcast optimization
+
+# GC parameters config
+
+# State compacting
+
+# Micro-batch trigger tune
+
+# Core core allocation executors
+
+# PySpark configurations audited
