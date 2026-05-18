@@ -72,3 +72,5 @@ import time
 # CORS setup
 
 # API response paginations
+
+# API diagnostics endpoints
