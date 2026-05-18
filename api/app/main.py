@@ -68,3 +68,5 @@ import time
 # Session get endpoint
 
 # Multi get options
+
+# CORS setup
