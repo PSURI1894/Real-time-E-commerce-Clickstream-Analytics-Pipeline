@@ -64,3 +64,5 @@ def health():
 import time
 
 # API endpoint metrics
+
+# Session get endpoint
