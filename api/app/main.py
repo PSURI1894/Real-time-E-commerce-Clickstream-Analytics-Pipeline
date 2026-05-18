@@ -74,3 +74,5 @@ import time
 # API response paginations
 
 # API diagnostics endpoints
+
+# Error parameters handlers
