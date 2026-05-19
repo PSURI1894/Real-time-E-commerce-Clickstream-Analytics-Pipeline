@@ -5,3 +5,5 @@
 # Date partitioning hidden
 
 # Write parquet
+
+# Bucket setup checks
