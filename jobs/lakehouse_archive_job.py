@@ -7,3 +7,5 @@
 # Write parquet
 
 # Bucket setup checks
+
+# Iceberg format support
