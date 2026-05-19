@@ -13,3 +13,5 @@
 # Lakehouse compacting
 
 # Partition pruning validation
+
+# Archival pipeline validated
