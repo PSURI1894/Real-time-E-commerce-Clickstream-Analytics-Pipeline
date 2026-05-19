@@ -3,3 +3,5 @@
 # MinIO target writes
 
 # Date partitioning hidden
+
+# Write parquet
