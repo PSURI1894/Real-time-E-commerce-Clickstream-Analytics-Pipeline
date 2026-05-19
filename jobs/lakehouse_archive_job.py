@@ -11,3 +11,5 @@
 # Iceberg format support
 
 # Lakehouse compacting
+
+# Partition pruning validation
