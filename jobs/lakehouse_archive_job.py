@@ -9,3 +9,5 @@
 # Bucket setup checks
 
 # Iceberg format support
+
+# Lakehouse compacting
