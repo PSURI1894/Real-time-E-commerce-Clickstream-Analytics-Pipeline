@@ -19,3 +19,7 @@ scrape_configs:
   - job_name: 'serving-api-metrics'
     static_configs:
       - targets: ['api:8082']
+
+  - job_name: 'cassandra-metrics'
+    static_configs:
+      - targets: ['cassandra:7070']
