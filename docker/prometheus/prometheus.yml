@@ -23,3 +23,7 @@ scrape_configs:
   - job_name: 'cassandra-metrics'
     static_configs:
       - targets: ['cassandra:7070']
+
+  - job_name: 'redis-metrics'
+    static_configs:
+      - targets: ['redis-exporter:9121']
