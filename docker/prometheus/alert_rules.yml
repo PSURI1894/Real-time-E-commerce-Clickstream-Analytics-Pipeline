@@ -4,3 +4,7 @@ groups:
       - alert: HighConsumerLag
         expr: kafka_consumergroup_lag > 100000
         for: 2m
+
+      - alert: SparkBatchDelay
+        expr: spark_batch_duration_seconds > 30
+        for: 5m
