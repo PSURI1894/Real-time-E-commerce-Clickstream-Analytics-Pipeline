@@ -7,3 +7,25 @@ scrape_configs:
   - job_name: 'kafka-connect'
     static_configs:
       - targets: ['kafka-connect:8083']
+
+  - job_name: 'spark-executors'
+    static_configs:
+      - targets: ['spark-master:8080']
+
+  - job_name: 'edge-collector-metrics'
+    static_configs:
+      - targets: ['collector:8000']
+
+  - job_name: 'serving-api-metrics'
+    static_configs:
+      - targets: ['api:8082']
+
+  - job_name: 'cassandra-metrics'
+    static_configs:
+      - targets: ['cassandra:7070']
+
+  - job_name: 'redis-metrics'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+
+# Prometheus complete
