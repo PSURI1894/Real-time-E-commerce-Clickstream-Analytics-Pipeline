@@ -27,3 +27,5 @@ scrape_configs:
   - job_name: 'redis-metrics'
     static_configs:
       - targets: ['redis-exporter:9121']
+
+# Prometheus complete
