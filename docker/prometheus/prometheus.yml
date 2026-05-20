@@ -11,3 +11,7 @@ scrape_configs:
   - job_name: 'spark-executors'
     static_configs:
       - targets: ['spark-master:8080']
+
+  - job_name: 'edge-collector-metrics'
+    static_configs:
+      - targets: ['collector:8000']
