@@ -33,3 +33,5 @@ CREATE TABLE IF NOT EXISTS sessions_by_user (
     is_purchased boolean,
     PRIMARY KEY (user_id, session_start_ts)
 ) WITH CLUSTERING ORDER BY (session_start_ts DESC);
+
+-- Updated initialization scripts
