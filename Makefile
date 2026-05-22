@@ -42,3 +42,5 @@ run-enrichment:
 
 run-aggregations:
 	spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0 jobs/aggregation_job.py
+
+# Makefile completed
