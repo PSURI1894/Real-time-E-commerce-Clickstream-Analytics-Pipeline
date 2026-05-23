@@ -1,3 +1,2 @@
-# Real-time E-commerce Clickstream Analytics Pipeline
-
-Baseline overview.
+# Clickstream Analytics Pipeline
+Final polished comprehensive setup guide.
