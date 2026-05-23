@@ -21,66 +21,82 @@ In modern e-commerce, user behavior data is highly time-sensitive. A clickstream
 
 This pipeline is built on the **Kappa Architecture** paradigm, where all processing is executed as streams over a unified event log.
 
-```
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                               CLIENT / BEHAVIOR SIMULATOR                              │
-│   ┌─────────────────────────┐  ┌─────────────────────────┐  ┌─────────────────────────┐ │
-│   │   Shopper Thread A      │  │   Crawler Bot Thread    │  │  Delayed/Late Client    │ │
-│   └────────────┬────────────┘  └────────────┬────────────┘  └────────────┬────────────┘ │
-└────────────────┼────────────────────────────┼────────────────────────────┼──────────────┘
-                 │                            │ (JSON HTTP POST /collect)  │
-                 ▼                            ▼                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                        EDGE LAYER                                      │
-│                      ┌──────────────────────────────────────────┐                      │
-│                      │         FastAPI Event Collector          │                      │
-│                      └────────────────────┬─────────────────────┘                      │
-└───────────────────────────────────────────┼────────────────────────────────────────────┘
-                                            │ (Avro Serialization & Idempotent Produce)
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                   STREAMING BACKBONE                                   │
-│  ┌───────────────────────────┐                  ┌───────────────────────────────────┐  │
-│  │   clickstream.raw Topic   │◄────────────────┤     Confluent Schema Registry     │  │
-│  └─────────────┬─────────────┘                  └───────────────────────────────────┘  │
-└────────────────┼───────────────────────────────────────────────────────────────────────┘
-                 ├─────────────────────────────────┬────────────────────────────────┐
-                 ▼ (Read Stream)                   ▼ (Read Stream)                  ▼ (S3 Parquet)
-┌──────────────────────────────────┐┌──────────────────────────────────┐┌───────────────────────┐
-│     SPARK ENRICHMENT STREAM      ││    SPARK SESSIONIZATION STREAM   ││ KAFKA CONNECT S3 SINK │
-│  - Bot-detection regex filter    ││  - mapGroupsWithState (30m)      ││ - Hidden Partition    │
-│  - User-Agent parser resolution  ││  - RocksDB State Store backend   ││ - Parquet Format      │
-│  - GeoIP location mapper         ││  - Real-time Redis sync pipeline ││ - MinIO Lakehouse     │
-└────────────────┬─────────────────┘└────────────────┬─────────────────┘└───────────────────────┘
-                 │ (Write Enriched)                  │ (Write Sessions)
-                 ▼                                   ▼
-┌──────────────────────────────────┐┌──────────────────────────────────┐
-│    clickstream.enriched Topic    ││     clickstream.sessions Topic   │
-└────────────────┬─────────────────┘└──────────────────────────────────┘
-                 │
-                 ▼ (Read Stream)
-┌──────────────────────────────────┐
-│     SPARK AGGREGATIONS STREAM    │
-│  - 1m Tumbling / 1h Sliding      │
-│  - 5m Event-Time Watermarking    │
-│  - Custom Cassandra Sink Writer  │
-└────────────────┬─────────────────┘
-                 │ (Salted Modulo 16 Partition Writes)
-                 ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                      SERVING LAYER                                     │
-│  ┌───────────────────────────┐                  ┌───────────────────────────────────┐  │
-│  │     Apache Cassandra      │                  │            Redis Cache            │  │
-│  │   - Salted OLAP Tables    │                  │      - User Session Caches        │  │
-│  │   - RF=3 Production       │                  │      - Sub-10ms P99 Reads         │  │
-│  └─────────────▲─────────────┘                  └─────────────────▲─────────────────┘  │
-└────────────────┼──────────────────────────────────────────────────┼────────────────────┘
-                 │ (Parallel Salt Fan-In Queries)                   │ (HMGET Lookups)
-                 └──────────────────────────┬───────────────────────┘
-                                            │
-                               ┌────────────┴────────────┐
-                               │   Serving REST API      │
-                               └─────────────────────────┘
+```mermaid
+flowchart TD
+    %% Styling Definitions
+    classDef client fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#01579b;
+    classDef edge fill:#ede7f6,stroke:#673ab7,stroke-width:2px,color:#311b92;
+    classDef broker fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#e65100;
+    classDef registry fill:#f1f8e9,stroke:#8bc34a,stroke-width:2px,color:#1b5e20;
+    classDef spark fill:#ffebee,stroke:#f44336,stroke-width:2px,color:#b71c1c;
+    classDef serving fill:#e0f2f1,stroke:#009688,stroke-width:2px,color:#004d40;
+    classDef api fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px,color:#4a148c;
+
+    %% Clients subgraph
+    subgraph Client Layer [Behavior & Traffic Simulator]
+        A["Shopper Thread A<br>(Search, View, Add to Cart)"]
+        B["Crawler Bot Thread<br>(Behavior Heuristics)"]
+        C["Delayed / Late Client<br>(Delayed Connectivity)"]
+    end
+    class A,B,C client;
+
+    %% Edge Layer
+    subgraph Edge Ingestion
+        D["FastAPI Event Collector<br>(Payload Decoration & Trace ID)"]
+    end
+    class D edge;
+
+    %% Message Bus
+    subgraph Message Bus & Schemas [Kafka KRaft Event Bus]
+        E(("clickstream.raw<br>Topic"))
+        F["Confluent Schema Registry<br>(Avro Validation)"]
+    end
+    class E broker;
+    class F registry;
+
+    %% Processing
+    subgraph PySpark Streaming Cluster [Stateful Stream Engines]
+        G["Spark Enrichment Stream<br>(GeoIP Lookup, UA Resolves)"]
+        H["Spark Sessionization Stream<br>(mapGroupsWithState RocksDB)"]
+        I["Kafka Connect S3 Sink<br>(MinIO Lakehouse Archive)"]
+    end
+    class G,H,I spark;
+
+    %% Intermediate topics
+    J(("clickstream.enriched<br>Topic"))
+    K(("clickstream.sessions<br>Topic"))
+    class J,K broker;
+
+    subgraph Spark Aggregations
+        L["Spark Aggregations Stream<br>(Tumbling 1m & Sliding 1h Windows)"]
+    end
+    class L spark;
+
+    %% Storage & Serving
+    subgraph serving_layer [Real-time Database Serving Layer]
+        M["Apache Cassandra<br>(Salted 16 Partition Keys)"]
+        N["Redis Cache Feature Store<br>(TTL-enforced Hash Profiles)"]
+    end
+    class M,N serving;
+
+    subgraph API Gateway
+        O["Serving REST API FastAPI<br>(Parallel Salt Fan-In Lookups)"]
+    end
+    class O api;
+
+    %% Connections
+    A & B & C -->|JSON HTTP POST /collect| D
+    D -->|Avro Serialized Payload| E
+    E <-->|Metadata Schema Validations| F
+    E -->|Read Stream| G
+    E -->|Read Stream| H
+    E -->|Read Stream / Parquet Organize| I
+    G -->|Write Enriched| J
+    H -->|Write Completed Sessions| K
+    H -->|Update Active Cache| N
+    J -->|Read Stream / Filter Bots| L
+    L -->|Salted Key mod 16 Writes| M
+    M & N -->|Concurrent Fan-in Reads| O
 ```
 
 ### 2.1 Component Specifications
